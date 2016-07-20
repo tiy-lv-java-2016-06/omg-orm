@@ -48,3 +48,4 @@ Parse the two csv files and store them in PostgreSQL via Spring Data. Then displ
 
 ## Resources
 * [Github Repo](https://github.com/tiy-lv-java-2016-06/omg-orm)
+* [Spring JPA Query Guide](http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
