@@ -45,3 +45,6 @@ Parse the two csv files and store them in PostgreSQL via Spring Data. Then displ
   * Displays links at the top that allow you to filter by each category
 
 ![screenshot](screenshot2.png)
+
+## Resources
+* [Github Repo](https://github.com/tiy-lv-java-2016-06/omg-orm)
