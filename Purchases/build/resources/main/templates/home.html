@@ -16,9 +16,23 @@
 <br/><br/>
 
 <table>
-    Name Email Category Credit Card  CVV Date
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Credit Card</th>
+        <th>CVV</th>
+        <th>Date</th>
+    </tr>
     {{#purchases}}
-        <ul>{{customer.getName}} {{customer.getEmail}} {{category}} {{creditCard}} {{cvv}} {{date}} </ul>
+    <tr>
+        <td>{{customer.getName}}</td>
+        <td>{{customer.getEmail}}</td>
+        <td>{{category}}</td>
+        <td>{{creditCard}}</td>
+        <td>{{cvv}}</td>
+        <td>{{date}}</td>
+    </tr>
     {{/purchases}}
 
 </table>
