@@ -54,14 +54,19 @@ public class PurchasesController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model, HttpSession session){
+    public String home(Model model, String category){
         List<Customer> customerList;
         List<Purchase> purchaseList;
         customerList = customers.findAll();
-        purchaseList = purchases.findAll();
 
+        if(category != null){
+            model.addAttribute("purchases", purchases.findByCategory(category));
+        }
+        else {
+            purchaseList = purchases.findAll();
+            model.addAttribute("purchases", purchaseList);
+        }
         model.addAttribute("customers", customerList);
-        model.addAttribute("purchases", purchaseList);
         return "home";
     }
 }
