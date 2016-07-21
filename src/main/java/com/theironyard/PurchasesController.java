@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,9 +26,9 @@ public class PurchasesController {
     PurchaseRepository purchases;
 
     @PostConstruct
-    public void init(){
+    public void init() {
 
-        if(customers.count() < 1) {
+        if (customers.count() < 1) {
 
             File customerFile = new File("customers.csv");
             Scanner scanner;
@@ -41,7 +42,7 @@ public class PurchasesController {
             while (scanner.hasNextLine()) {
                 String[] lineSplit = scanner.nextLine().split(",");
 
-                Customer customer = new Customer(lineSplit[1], lineSplit[2]);
+                Customer customer = new Customer(lineSplit[0], lineSplit[1]);
                 customers.save(customer);
             }
         }
@@ -58,29 +59,32 @@ public class PurchasesController {
             while (scanner1.hasNextLine()) {
                 String[] lineSplit = scanner1.nextLine().split(",");
 
-                Integer customer_id = null;
-                Customer customer = customers.findById(customer_id);
                 Integer cvv;
-
                 try {
-                    customer_id = Integer.parseInt(lineSplit[0]);
                     cvv = Integer.parseInt(lineSplit[3]);
                 } catch (NumberFormatException e) {
                     continue;
                 }
 
+                Integer customer_id = Integer.parseInt(lineSplit[0]);
+                Customer customer = customers.findById(customer_id);
                 Purchase purchase = new Purchase(customer, lineSplit[1], lineSplit[2], cvv, lineSplit[4]);
                 purchases.save(purchase);
             }
         }
-
-    }
-
-
+  }
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model){
+        public String home (Model model, String category){
 
-        return "home";
-    }
+        List<Purchase> categoryList;
+            if (category != null){
+                categoryList = purchases.findByCategory(category);
+            }
+            else{
+                categoryList = purchases.findAll();
+            }
+            model.addAttribute("purchases", categoryList);
+            return "home";
+        }
 
 }
