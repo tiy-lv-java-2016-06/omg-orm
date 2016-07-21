@@ -7,15 +7,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "purchases")
 public class Purchase {
+    @Id
+    @GeneratedValue
+    int id;
 
     @Column(nullable = false)
     private String date;
 
     @Column(nullable = false)
-    private String credit_card;
+    private String creditCard;
 
     @Column(nullable = false)
-    private int cvv;
+    private String cvv;
 
     @Column(nullable = false)
     private String category;
@@ -26,9 +29,9 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(String date, String credit_card, int cvv, String category, Customer customer) {
+    public Purchase(String date, String credit_card, String cvv, String category, Customer customer) {
         this.date = date;
-        this.credit_card = credit_card;
+        this.creditCard = credit_card;
         this.cvv = cvv;
         this.category = category;
         this.customer = customer;
@@ -39,11 +42,11 @@ public class Purchase {
         return date;
     }
 
-    public String getCredit_card() {
-        return credit_card;
+    public String getCreditCard() {
+        return creditCard;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
