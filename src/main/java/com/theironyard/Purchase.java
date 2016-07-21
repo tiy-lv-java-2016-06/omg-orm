@@ -12,7 +12,7 @@ public class Purchase {
 
     @Id
     @GeneratedValue
-    private int purchase_id;
+    private int id;
 
     @Column(nullable = false)
     private String date;
@@ -41,12 +41,12 @@ public class Purchase {
         this.category = category;
     }
 
-    public int getPurchase_id() {
-        return purchase_id;
+    public int getId() {
+        return id;
     }
 
-    public void setPurchase_id(int purchase_id) {
-        this.purchase_id = purchase_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {

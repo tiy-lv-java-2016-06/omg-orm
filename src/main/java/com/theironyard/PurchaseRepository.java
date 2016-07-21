@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by vasantia on 7/20/16.
  */
-public interface PurchaseRepository extends JpaRepository {
+public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
 
     List<Purchase> findByCategory(String category);
 }
